@@ -20,16 +20,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 's!a446aqg=#oqk+q11de_bnc5gh-ysieyq)$k^qk(9r3k%r^@u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
+#INTERNAL_IPS = ('127.0.0.1', 'localhost',)
+TEMPLATE_DEBUG = False
+ALLOWED_HOSTS = ['127.0.0.1',]
 
 
 # Application definition
 
 INSTALLED_APPS = (
+    #my app
+    'bwf',
+    #Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -82,3 +85,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+#auth
+#direct to after successful login
+LOGIN_REDIRECT_URL = '/home'
+LOGIN_URL = 'django.contrib.auth.views.login'
+
+
+try:
+    from settings_dev import *
+except Exception as e:
+    print e
+
+
+print "DEBUG: %s" %DEBUG
