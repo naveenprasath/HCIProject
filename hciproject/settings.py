@@ -90,6 +90,8 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/home'
 LOGIN_URL = 'django.contrib.auth.views.login'
 
+#use our user model
+AUTH_USER_MODEL = 'bwf.User'
 
 try:
     from settings_dev import *

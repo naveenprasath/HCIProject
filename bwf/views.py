@@ -4,11 +4,9 @@ from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from bwf.models import User
 from django.contrib.auth.decorators import login_required
-
-
+from bwf.forms import UserCreationForm
 
 
 class IndexView(TemplateView):
