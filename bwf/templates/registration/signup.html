@@ -3,8 +3,16 @@
 {% block content %}
 <form action="" method="post">
 {% csrf_token %}
-  {{ form.as_ul }}
-  <input type="submit"  value="Signup" />
 
+{% for obj in form %}
+  <div class="fieldWrapper">
+    {{ obj.label_tag }}
+    {{ obj }}
+    <span class="error">
+      {{ obj.errors.as_text }}
+    </span>
+  </div>
+  {% endfor %}
+  <input type="submit"  value="Signup" />
 </form>
 {% endblock %}

@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from bwf.views import *
 
 urlpatterns = patterns('',
@@ -16,3 +17,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 )
+
+urlpatterns += staticfiles_urlpatterns()

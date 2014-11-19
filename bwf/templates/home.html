@@ -3,5 +3,6 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>Welcome, {{ user.get_full_name }} </h1>
+  {% include 'navbar.html' %}
+  <h1>Welcome, {{ user.get_full_name }} </h1>
 {% endblock %}
