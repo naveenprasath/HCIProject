@@ -1,3 +1,4 @@
 *.pyc
 *.sqlite3
 hciproject/settings_dev.py
+staticfiles

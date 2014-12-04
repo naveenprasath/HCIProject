@@ -10,7 +10,9 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+import dj_database_url
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 # Quick-start development settings - unsuitable for production
@@ -21,10 +23,11 @@ SECRET_KEY = 's!a446aqg=#oqk+q11de_bnc5gh-ysieyq)$k^qk(9r3k%r^@u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 #INTERNAL_IPS = ('127.0.0.1', 'localhost',)
-TEMPLATE_DEBUG = False
-ALLOWED_HOSTS = ['127.0.0.1',]
+TEMPLATE_DEBUG = True
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -56,15 +59,16 @@ ROOT_URLCONF = 'hciproject.urls'
 WSGI_APPLICATION = 'hciproject.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+
+# Database
+DATABASES={}
+DATABASES['default'] =  dj_database_url.config()
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -83,12 +87,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(
-        os.path.dirname(__file__),
-        'static',
-    ),
+    os.path.join(BASE_DIR, 'static'),
 )
 
 #auth
