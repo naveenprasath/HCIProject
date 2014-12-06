@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 
-from bwf.models import User
+from bwf.models import User, Debt, Friendship
 from django.contrib.auth.decorators import login_required
 from bwf.forms import UserCreationForm
 
@@ -21,6 +21,14 @@ class IndexView(TemplateView):
 
 class HomeView(TemplateView):
     template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+        user = self.request.user
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['friends'] = Friendship.objects.friends_of(user)
+        context['owe_me'] = Debt.objects.owe_me(user)
+        context['owe_them'] = Debt.objects.owe_me(user)
+        return context
 
 home = login_required(HomeView.as_view())
 
