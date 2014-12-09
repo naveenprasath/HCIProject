@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import admin
 
-from bwf.models import User, Friend, Friendship, Debt
+from bwf.models import User, Friend, Friendship, Bill
 
 admin.site.register(User)
 
@@ -14,4 +14,4 @@ class FriendshipAdmin(admin.ModelAdmin):
 
 admin.site.register(Friendship, FriendshipAdmin)
 
-admin.site.register(Debt)
+admin.site.register(Bill)

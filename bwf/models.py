@@ -123,20 +123,22 @@ class Friendship(models.Model):
 
 
 
-class DebtManager(models.Manager):
+class BillManager(models.Manager):
     def owe_me(self, User):
         return self.filter(creditor=User.email)
 
     def owe_them(self, User):
         return self.filter(debtor=User.email)
 
-class Debt(models.Model):
+class Bill(models.Model):
     creditor = models.EmailField();
     debtor = models.EmailField();
     amount = models.FloatField();
+    description = models.CharField(max_length=40, blank=True)
+    bill_time = models.DateTimeField()
     created_time = models.DateTimeField(default=timezone.now)
     
-    objects = DebtManager()
+    objects = BillManager()
 
     def __unicode__(self):
         return "%s owes %s %s" %(self.debtor, self.creditor, self.amount)
