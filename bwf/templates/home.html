@@ -3,7 +3,13 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-  	{% include 'navbar.html' %}
-  	<h1>Welcome, {{ user.get_full_name }} </h1>
-  	<p>test:{{ user.friend }}</p>
+  {% include 'navbar.html' %}
+  <h1>Welcome, {{ user.get_full_name }} </h1>
+
+  <div id="friend-list">
+    {% for friend in friends %}
+    <div>{{ friend }}</div>
+    {% endfor %}
+
+  </div>
 {% endblock %}

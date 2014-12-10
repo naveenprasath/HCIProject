@@ -13,6 +13,7 @@ In class project for HCI course
   * create hciproject/settings_dev.py
   * put anything here. For example:
     ```
+
     DEBUG = True  
     
     DATABASES = {
