@@ -1,0 +1,59 @@
+<script>
+  	  var friendlist = new Array();
+  	  $("#fadeBill").click(function(){
+	  	  	{% for firend in friends %}
+	  	  		var friendname = "test";
+	  	  		friendlist.push(friendname);
+	  	  		alert(friendlist);
+	  	  	{% endfor %}
+	  	  	document.getElementById('datePicker').valueAsDate = new Date();
+
+  	  });
+
+	  $("#peopleInvolved").click(function(){
+		  $( ".friendsName" ).each(function() {
+		  	for (var i = friendlist.length - 1; i >= 0; i--) {
+
+		  	};
+		  });
+	  });
+
+	  $(".friendsName").click(function(){
+	  	if (true) {};
+	  	alert(friendlist);
+	  })
+
+	  $("#equalAmount").on("input",function(){
+	  	var totalAmount = document.getElementById('equalAmount').value;
+	  	var friendsNumber = {{friends|length}};
+	  	// {% for firend in friends %}
+	  	// 	friendsNumber += 1;
+  	 	// {% endfor %}
+  	  	$(".perAmountEqual").each(function(){
+  	  		this.value = totalAmount/2 + '$';
+  	  	});
+	  });
+
+	  $("#hemized").click(function(){
+	  	$("#size").attr("class", "modal-dialog modal-lg"); 
+	  });
+
+	  $("#equal").click(function(){
+	  	$("#size").attr("class", "modal-dialog modal-sm"); 
+	  });
+
+	  $("#mannual").click(function(){
+	  	$("#size").attr("class", "modal-dialog modal-sm"); 
+	  });
+
+	  $(".addRow").on("input",function(){
+	  	if (this.value != "") {
+	  	};
+	  });
+
+	  $("#cancel").click(function(){
+	  	document.getElementById('peopleInvolved').value = "";
+	  	document.getElementById('peoplePaid').value = "";
+	  	alert("cancel the bill?");
+	  });
+  </script>

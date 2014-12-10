@@ -21,7 +21,7 @@ SECRET_KEY = 's!a446aqg=#oqk+q11de_bnc5gh-ysieyq)$k^qk(9r3k%r^@u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 #INTERNAL_IPS = ('127.0.0.1', 'localhost',)
 TEMPLATE_DEBUG = False
 ALLOWED_HOSTS = ['127.0.0.1',]
@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap3',
 )
 
 MIDDLEWARE_CLASSES = (

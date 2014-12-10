@@ -66,10 +66,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         full_name = '%s %s' % (self.first_name, self.last_name)
         return full_name.strip()
  
+    def __unicode__(self):
+        name = "%s %s" %(self.first_name, self.last_name)
+        return name.strip()
+
     def get_short_name(self):
         return self.last_name
-
-
 
 
     def email_user(self, subject, message, from_email=None, **kwargs):
@@ -77,3 +79,64 @@ class User(AbstractBaseUser, PermissionsMixin):
         Sends an email to this User.
         """
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+class Friend(models.Model):
+    email = models.EmailField(_('email address'),  unique=True)
+    first_name = models.CharField(_('first name'), max_length=30, blank=True)
+    last_name = models.CharField(_('last name'), max_length=30 )
+    created_time = models.DateTimeField(default=timezone.now)
+
+    def get_full_name(self):
+        """
+        Returns the first_name plus the last_name, with a space in between.
+        """
+        full_name = '%s %s' % (self.first_name, self.last_name)
+        return full_name.strip()
+
+    def __unicode__(self):
+        return self.get_full_name()
+
+
+class FriendshipManager(models.Manager):
+    def friends_of(self, User):
+        records = self.filter(user=User.email)
+        friends = []
+        for each in records:
+            try:
+                friends.append(Friend.objects.get(email=each.friend))
+            except:
+                continue
+        return friends
+
+
+
+class Friendship(models.Model):
+    user = models.EmailField()
+    friend = models.EmailField()
+    created_time = models.DateTimeField(default=timezone.now)
+
+    objects = FriendshipManager()
+
+    def __unicode__(self):
+        return "%s has friend: %s " %(self.user, self.friend)
+
+
+
+
+class DebtManager(models.Manager):
+    def owe_me(self, User):
+        return self.filter(creditor=User.email)
+
+    def owe_them(self, User):
+        return self.filter(debtor=User.email)
+
+class Debt(models.Model):
+    creditor = models.EmailField();
+    debtor = models.EmailField();
+    amount = models.FloatField();
+    created_time = models.DateTimeField(default=timezone.now)
+    
+    objects = DebtManager()
+
+    def __unicode__(self):
+        return "%s owes %s %s" %(self.debtor, self.creditor, self.amount)
