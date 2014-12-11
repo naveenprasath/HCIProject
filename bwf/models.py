@@ -85,6 +85,7 @@ class Friend(models.Model):
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30 )
     created_time = models.DateTimeField(default=timezone.now)
+    friendof = models.ForeignKey('User')
 
     def get_full_name(self):
         """
@@ -95,32 +96,6 @@ class Friend(models.Model):
 
     def __unicode__(self):
         return self.get_full_name()
-
-
-class FriendshipManager(models.Manager):
-    def friends_of(self, User):
-        records = self.filter(user=User.email)
-        friends = []
-        for each in records:
-            try:
-                friends.append(Friend.objects.get(email=each.friend))
-            except:
-                continue
-        return friends
-
-
-
-class Friendship(models.Model):
-    user = models.EmailField()
-    friend = models.EmailField()
-    created_time = models.DateTimeField(default=timezone.now)
-
-    objects = FriendshipManager()
-
-    def __unicode__(self):
-        return "%s has friend: %s " %(self.user, self.friend)
-
-
 
 
 class BillManager(models.Manager):
