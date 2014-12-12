@@ -117,9 +117,3 @@ class Bill(models.Model):
 
     def __unicode__(self):
         return "%s owes %s %s" %(self.debtor, self.creditor, self.amount)
-
-
-
-
-
-

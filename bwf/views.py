@@ -37,6 +37,3 @@ class SignupView(CreateView):
     template_name = "registration/signup.html"
     form_class = UserCreationForm
     success_url = 'home'
-
-
-

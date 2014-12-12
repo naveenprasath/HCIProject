@@ -1,0 +1,125 @@
+<button type="button" class="btn btn-default btn-lg navbar-btn" data-toggle="modal" data-target=".bs-example-modal-sm" id="fadeBill">
+  Add Bill
+</button>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" id="size">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add a Bill</h4>
+      </div>
+      <!-- modal主体内容 -->
+      <div class="modal-body">
+        <!-- 下拉菜单1：选择人员名单 -->
+        <ul class="nav nav-pills" role="tablist">
+          <li role="presentation" style="position:relative; display:block; padding:5px;">Select who involved</li>
+          <li role="presentation" class="dropdown">
+            <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" style=" ">
+            <input type="text" class="form-control" placeholder="Username" style="width:100px; display:block-inline;" name="peopleInvolved" id="peopleInvolved">
+            <span class="caret"></span>
+            </a>
+            <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4" id="insertName">
+            {% for friend in friends %}
+                <li role="presentation"><a role="menuitem" class="friendsName" tabindex="-1" onclick="document.getElementById('peopleInvolved').value = document.getElementById('peopleInvolved').value + ', ' + '{{ friend.get_full_name }}'">{{ friend.get_full_name }}</a></li>
+            {% endfor %}
+            </ul>
+          </li>
+        </ul>
+        <!-- 下拉菜单2：选择付款人 -->
+        <ul class="nav nav-pills" role="tablist" style=" ">
+          <li role="presentation" style="position:relative; display:block; padding:5px;">Select who paid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li role="presentation" class="dropdown">
+            <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" style=" ">
+            <input type="text" class="form-control" placeholder="Username" style="width:100px; display:block-inline;" name="peoplePaid" id="peoplePaid">
+            <span class="caret"></span>
+            </a>
+            <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+              <li role="presentation"><a role="menuitem" tabindex="-1" onclick="document.getElementById('peoplePaid').value='Action'">Action</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" onclick="document.getElementById('peoplePaid').value='Another action'">Another action</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" onclick="document.getElementById('peoplePaid').value='Something else here'">Something else here</a></li>
+              <li role="presentation" class="divider"></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" onclick="document.getElementById('peoplePaid').value='Separated link'">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+        <!-- 选择计算方式 -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#Mannual" role="tab" data-toggle="tab" id="mannual">Mannual</a></li>
+          <li role="presentation"><a href="#Equal" role="tab" data-toggle="tab" id="equal">Equal</a></li>
+          <li role="presentation"><a href="#Hemized" role="tab" data-toggle="tab" id="hemized">Itemized</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+          <div role="tabpanel" class="tab-pane fade active in" id="Mannual" aria-labelledby="home-tab">
+           <table>
+              <thead>
+                <tr>
+                   <th data-field="">Name</th>
+                   <th data-field="">Shared Amount</th>
+                </tr>
+              </thead>
+              <tbody> 
+                {% for friend in friends %}
+                <tr>
+                  <th>{{friend.get_full_name}} </th>
+                  <th><input type="text" id="perAmountMannual_{{friend.get_full_name}}" class="sharedAmount"></th>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="Equal" aria-labelledby="profile-tab">
+            <div class="input-group">
+              <span class="input-group-addon">Total Amount:</span>
+              <input type="text" class="form-control" id="equalAmount">
+              <span class="input-group-addon">$</span>
+            </div>
+            <div>
+              {% for friend in friends %}
+                <p>{{friend.get_full_name}} <span><input type="text" class="perAmountEqual"></span></p>
+              {% endfor %}
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="Hemized" aria-labelledby="dropdown1-tab">
+            <div class="input-group">
+              <span class="input-group-addon">Total Amount:</span>
+              <input type="text" class="form-control">
+              <span class="input-group-addon">$</span>
+            </div>
+            <div>
+               <table data-url="data3.json" data-height="299" data-show-columns="true" data-id-field="id">
+                  <thead>
+                  <tr>
+                      <th data-field="state" data-radio="true"></th>
+                      <th data-field="name" data-switchable="false">Item</th>
+                      <th data-field="price">Price</th>
+                      {% for friend in friends %}
+                        <th>{{friend.get_full_name}}</th>
+                      {% endfor %}
+                  </tr>
+                  </thead>
+                  <tbody id="addRow"> 
+                    <tr data-index="0"><td class="bs-checkbox"></td><td style=""><input type="text" class="addRow"></td><td style=""><input type="text" class="addRow"></td>
+                    {% for friend in friends %}
+                      <td style=""><input data-index="0" name="btSelectItem_{{friend.get_full_name}}" type="radio" value="0"></td>
+                    {% endfor %}
+                    </tr>
+                    </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- 时间输入 -->
+        <input type=date min=2014-09-08 id="datePicker">
+        <!-- 添加图片 -->
+        <form action="demo_form.asp">
+          Add Image: <input type="file" name="img">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="addBill">Add</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
