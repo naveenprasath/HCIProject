@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Create Object from JSON String</h2>
+
+<p id="demo"></p>
+
+<div id="placeholder"></div>
+<script>
+    var data = { "users":[
+            {
+                "firstName":"naveen",
+                "amount": 25
+            },
+            {
+                "firstName":"lingzhu",
+                "amount": 30
+            },
+            {
+                "firstName":"ke",
+                "amount": 25
+            },
+            {
+                "firstName":"chen",
+                "amount": 30
+            }
+    ]}
+
+    var output="<ul>";
+    for (var i in data.users) {
+        output+="<li>" + data.users[i].firstName + "--" + data.users[i].amount+"</li>";
+    }
+    output+="</ul>";
+
+    document.getElementById("placeholder").innerHTML=output;
+</script>
+
+</body>
+</html>
