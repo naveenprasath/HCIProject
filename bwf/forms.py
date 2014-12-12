@@ -1,5 +1,5 @@
 from django import forms
-from bwf.models import User
+from bwf.models import User, Bill
 from django.utils.translation import ugettext_lazy as _
 
 class UserCreationForm(forms.ModelForm):
@@ -55,3 +55,11 @@ class UserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class AddBillForm(forms.ModelForm):
+    class Meta:
+        model = Bill
+        fields= ['creditor', 'debtor', 'description', 'amount', 'bill_time']
+        
+
