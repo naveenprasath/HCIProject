@@ -1,9 +1,83 @@
 
-html 
+#bwf-header
 {
- 	background: url(index_background.jpg) no-repeat center center fixed;
- 	-webkit-background-size: cover;
- 	-moz-background-size: cover;
- 	-o-background-size: cover;
- 	background-size: cover;
+ 	background-image: url(index_background.jpg);
+ 	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center 0px; 
+ 	height: 687px;
+ 	border-top: solid 20px #fff;
+ 	border-bottom: solid 2px #ddd;
+}
+
+#bwf-head-container
+{
+	margin-top: 40px;
+	margin-left: auto;
+    margin-right: auto;
+    height: 150px;
+    width: 500px;
+}
+
+#signin
+{
+    float: left;
+}
+
+#signup
+{
+    float: right;
+}
+
+.bbtn
+{
+	height: 75px;
+    width: 150px;
+    font-size: 150%;
+    font-weight: lighter;
+    border-style: none;
+    outline: none;
+
+    background-image: url(button.png);
+    background-color: #fff !important;
+    opacity: 0.6;
+    font-family: 'Lobster', cursive;
+}
+
+.bbtn:hover,:focus
+{
+	border-style: none;
+	outline: none;
+	opacity: 0.9
+}
+
+.container
+{
+	text-align: center;
+
+}
+
+h1
+{
+	line-height: 150%;
+	font-family: 'Slabo 27px', serif;
+}
+
+h3
+{
+	font-family: 'Lato', sans-serif;
+	line-height: 150%;
+}
+
+h4
+{
+	color: #777;
+	font-family: 'PT Sans', sans-serif;
+}
+
+.footer
+{
+	height: 100px;
+	margin-bottom: 0px;
+	background-color: #eee;
 }

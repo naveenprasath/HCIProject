@@ -1,9 +1,58 @@
 
 {% extends "base.html" %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
 
 {% block title %}Welcome{% endblock %}
 
 {% block content %}
-<h1> Index Page</h1>
+<link href="{% static 'css/index.css' %}" rel="stylesheet" >
+<body>
+	<div id="bwf-header">
+
+	</div>
+
+	<div id="bwf-head-container">
+		<button id="signin" type="button" class="bbtn" href="#">Sign In</button>
+		<button id="signup" type="button" class="bbtn" href="#">Sign Up</button>
+	</div>
+
+
+
+	<div class="container">
+		<h1>Why choose Bills with friends?</h1>
+		<h3>Even it is such simple such similar with other website.</h3>
+		<br>
+		<h1>Now I can't come up with a reason.</h1>
+		<h3>Perhaps one day the small website will become one of the biggest company in the world and then you will regret for not buying our stocks. Oh I told you.</h3>
+		<h3>Suddently I got it. I can tell a little story here to make the website looks longer. Oh Liz, how smart you are!</h3>
+		<br>
+		<h1>Here is a story: The Boy Who Cried Wolf</h1>
+		<h3>A shepherd-boy, who watched a flock of sheep near a village, brought out the villagers three or four times by crying out, "Wolf! Wolf!" and when his neighbors came to help him, laughed at them for their pains.<br>The Wolf, however, did truly come at last. The Shepherd-boy, now really alarmed, shouted in an agony of terror: "Pray, do come and help me; the Wolf is killing the sheep"; but no one paid any heed to his cries, nor rendered any assistance. The Wolf, having no cause of fear, at his leisure lacerated or destroyed the whole flock.<br>There is no believing a liar, even when he speaks the truth.</h3>
+		<br><br>
+		<hr>
+	</div>
+
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<h4>About us</h4>
+				</div>
+				<div class="col-md-3">
+					<h4>Copyright</h4>
+				</div>
+				<div class="col-md-3">
+					<h4>Help</h4>
+				</div>
+				<div class="col-md-3">
+					<h4>Call 911</h4>
+				</div>
+			</div>
+			<p>Bills with friends is a website for spliting bills with your friends. But if your name is Bill, it doesn't mean that our website could teach to how to make good friends. To make friends, you have to make so much effort. We belive that, annoying people should die alone.</p>
+		</div>
+	</div>
+</body>
 {% endblock %}
 
