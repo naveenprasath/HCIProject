@@ -1,7 +1,12 @@
+{% load staticfiles %}
 {% extends "base.html" %}
+<html>
+<link href="{% static 'css/index.css' %}" rel="stylesheet" >
 
 {% block title %}Welcome{% endblock %}
 
 {% block content %}
 <h1> Index Page</h1>
 {% endblock %}
+
+</html>
